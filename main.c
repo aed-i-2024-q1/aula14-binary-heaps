@@ -1,32 +1,31 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 #include "binary_heap.h"
 
 int main() {
-    BinaryHeap* bh = bheap_create(10);
+    // int elements[] = {72, 54, 63, 27, 36, 45, 61, 18};
+    int elements[] = {18, 27, 36, 45, 54, 61, 63, 72};
 
-    Element e1 = 1;
-    Element e2 = 2;
-    Element e3 = 3;
-    Element e4 = 4;
-    Element e5 = 5;
+    BinaryHeap* heap = bheap_create(10);
 
-    bheap_insert(bh, e3);
-    bheap_insert(bh, e1);
-    bheap_insert(bh, e5);
-    bheap_insert(bh, e4);
-    bheap_insert(bh, e2);
+    printf("Inserting elements:\n");
+    for (int i = 0; i < 8; i++) {
+        bheap_insert(heap, elements[i]);
+        bheap_print(heap);
+    }
 
-    pq_print(bh);
+    printf("\n");
 
-    while (!pq_isEmpty(bh)) {
-        Element e = bheap_extract(bh);
-        element_print(e);
+    printf("Extracting elements:\n");
+    while (!bheap_isEmpty(heap)) {
+        element_print(bheap_extract(heap));
         printf(" ");
     }
     printf("\n");
 
-    bheap_destroy(bh);
+    
 
-    return 0;
+    bheap_destroy(heap);
 }
+		
